@@ -4,18 +4,32 @@ public class Transaction {
     private double montant;//0.0
     private Type typeTrans;//classe ou enumeration ==>null
                            //booleen ==> false
-   
+    public  final double cout=0.01;
+    //Attribut de classe
+    private static int nbreTrans;
+    public final static double taux=0.05;
+
+    public Transaction(double montant, Type typeTrans) {
+        nbreTrans++;
+        this.id=  nbreTrans;
+        this.montant = montant;
+        this.typeTrans = typeTrans;
+    }
     public Transaction(){
 
     }
-
     public Transaction(int id,double montant,Type typeTrans){
-         this.id=id;
-          this.montant=montant;
-          this.typeTrans=typeTrans;
-    }
+        this.id=id;
+         this.montant=montant;
+         this.typeTrans=typeTrans;
+   }
+   public  int getNbreTrans(){
+        return nbreTrans;
+   }
 
-    public int getId(){
+   
+
+    public  int getId(){
       return id;
     }
     public double getMontant(){

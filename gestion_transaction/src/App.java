@@ -3,19 +3,18 @@ import java.util.Scanner;
 import entities.Transaction;
 import entities.Type;
 import services.TransactionService;
-
 public class App {
+    private static Scanner scanner=new Scanner(System.in);
     public static void main(String[] args) throws Exception {
         //1. Ajouter une Transaction dans le Tableau
         // 2.Lister toutes Transactions du Tableau
         //3.Lister les Transactions du Tableau Par Type
-        Scanner scanner=new Scanner(System.in);
+       
         TransactionService transactionService=new TransactionService();
         int choix, id, type;
         double montant; 
         Type typeTrans;
         Transaction t;
-
         do {
              System.out.println("1. Ajouter une Transaction dans le Tableau"); 
              System.out.println("2. Lister toutes Transactions du Tableau"); 
@@ -24,24 +23,14 @@ public class App {
              choix=scanner.nextInt();
              switch (choix) {
                 case 1:
-                System.out.println("Entrer l’id");
-                id=scanner.nextInt();
+               // System.out.println("Entrer l’id");
+               // id=scanner.nextInt();
                 System.out.println("Entrer le Montant");
                 montant=scanner.nextDouble();
-                System.out.println("Entrer le Type");
-                do {
-                    System.out.println("1-Retrait");
-                    System.out.println("2-Depot");
-                    type=scanner.nextInt();
-                } while (type<1 || type>2);
-                   
-          
-                if(type==1) 
-                  typeTrans=Type.Retrait;
-                else
-                  typeTrans=Type.Depot;
-       
-                t=new Transaction(id,montant, typeTrans);
+                typeTrans=saisieTransaction();
+                t=new Transaction(montant, typeTrans);
+                t.getNbreTrans();
+                //Transaction.taux=0.09;
                 transactionService.addTransaction(t);
                 break;
 
@@ -50,18 +39,8 @@ public class App {
                     break;
 
                 case 3:
-                System.out.println("Entrer le Type");
-                  do {
-                     System.out.println("1-Retrait");
-                     System.out.println("2-Depot");
-                    type=scanner.nextInt();
-                  } while (type<1 || type>2);
-          
-                if(type==1) 
-                  typeTrans=Type.Retrait;
-                else
-                  typeTrans=Type.Depot;
-                    transactionService.listerTransaction(typeTrans); 
+                
+                    transactionService.listerTransaction(saisieTransaction()); 
                     break;
                 default:
                     break;
@@ -83,4 +62,17 @@ public class App {
              //out(fichier de la ecriture) ==> Par defaut le Ecran
          
     }
+
+public static Type  saisieTransaction(){
+  int type;
+  System.out.println("Entrer le Type");
+  do {
+       System.out.println("1-Retrait");
+       System.out.println("2-Depot");
+      type=scanner.nextInt();
+  } while (type<1 || type>2);
+   return  type==1?Type.Retrait:Type.Depot;
+}
+
+
 }
