@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulaire de contact</title>
+  <script src="https://cdn.jsdelivr.net/npm/validate-form-js/dist/validate-form.min.js"></script>
+</head>
+<body>
+  <form id="contactForm">
+    <input type="text" name="name" placeholder="Nom" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const validator = new ValidateForm(form);
+
+    validator.setRules({
+      name: {
+        required: true,
+        minLength: 2
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      message: {
+        required: true
+      }
+    });
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      if (validator.validateForm()) {
+        // Envoyer le formulaire
+        console.log('Formulaire valide');
+      } else {
+        console.log('Formulaire invalide');
+      }
+    });
+  </script>
+</body>
+</html>
