@@ -7,7 +7,11 @@ public class Facture {
         private int id;
         private String numero;
         private double montant;
-        
+        private double montantVerser;
+        private double montantRestant;
+       
+       //Attribut
+
      //Attribut de Relation 
       //OneToOne
      private Commande commande; 
@@ -19,23 +23,32 @@ public class Facture {
     }
     //OneToMany
       private Payement[] payements=new Payement[N];
+
       public void addTab(Payement payements) {
         if (taille<N) {
             this.payements[taille] = payements;
+            montantVerser+=payements.getMontantVerser();
+            montantRestant=montant-montantVerser;
             taille++;  
         }
-        this.payements[taille] = payements;
-        taille++;
     }
     public Payement[] getPayements() {
         return payements;
     }
     private int taille;
+    
     public Facture(int id, String numero, double montant) {
         this.id = id;
         this.numero = numero;
         this.montant = montant;
     }
+
+    public Facture(Commande commande) {
+        this.id = commande.getId();
+        this.numero ="FACT"+commande.getNumero().substring(3,7);
+        this.montant = commande.getMontant();
+    }
+
     public static int getN() {
         return N;
     }
@@ -57,17 +70,33 @@ public class Facture {
     public void setMontant(double montant) {
         this.montant = montant;
     }
-    public void setPayements(Payement[] payements) {
-        this.payements = payements;
-    }
+  
     public int getTaille() {
         return taille;
     }
     public void setTaille(int taille) {
         this.taille = taille;
     }
+   
+
+    public double getMontantVerser() {
+        return montantVerser;
+    }
+    public void setMontantVerser(double montantVerser) {
+        this.montantVerser = montantVerser;
+    }
+
+     public double getMontantRestant() {
+        return montantRestant;
+    }
+    public void setMontantRestant(double montantRestant) {
+        this.montantRestant = montantRestant;
+    }
     @Override
     public String toString() {
-        return "Facture [id=" + id + ", numero=" + numero + ", montant=" + montant + ", commande=" + commande + "]";
+        return "Facture [numero=" + numero 
+                + ", montant=" + montant 
+                + ", montantVerser=" + montantVerser
+                + ", montantRestant=" + montantRestant + "]";
     }
 }

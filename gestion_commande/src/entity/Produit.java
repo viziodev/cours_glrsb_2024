@@ -12,6 +12,7 @@ public class Produit {
     //OneToMany
     private  static final int N=10;
     private ProduitCommande[] tabProduitCommandes=new ProduitCommande[N]; 
+    private int taille;
     public ProduitCommande[] getTabProduitCommandes() {
         return tabProduitCommandes;
     }
@@ -21,7 +22,7 @@ public class Produit {
            taille++;
         }
       }
-    private int taille;
+
     public Produit() {
     }
     public Produit(String libelle, int prix) {

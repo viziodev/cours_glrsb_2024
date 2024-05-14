@@ -1,10 +1,13 @@
 package entity;
 
-public class Payement {
+import java.time.LocalDate;
 
+public class Payement {
+    private static int nbrePayement;
     private int id;
     private String numero;
     private double montantVerser;
+    LocalDate datePayement;
     public double getMontantVerser() {
         return montantVerser;
     }
@@ -14,6 +17,14 @@ public class Payement {
     }
 
     private Facture facture;
+
+    public Payement() {
+        nbrePayement++;
+        id=nbrePayement;
+        int size= String.valueOf(id).length();
+        numero= "PAY"+"0".repeat(4-size<0?0:4-size)+id;
+        datePayement=LocalDate.now();
+    }
 
     public Payement(int id, String numero, double montantVerser) {
         this.id = id;
@@ -47,7 +58,6 @@ public class Payement {
 
     @Override
     public String toString() {
-        return "Payement [id=" + id + ", numero=" + numero + ", montantVerser=" + montantVerser + ", facture=" + facture
-                + "]";
+        return "Payement [id=" + id + ", numero=" + numero + ", montantVerser=" + montantVerser + "]";
     }
 }

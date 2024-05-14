@@ -1,15 +1,40 @@
 package entity;
 
+import java.time.LocalDate;
+
 public class Commande {
     //Constante
     private  static final int N=10;
      //Attribut
-     private int id;
-     private String numero;
-     private double montant;
+     private static int nbreCmde;
+     private int id;//Generer Id
+     private String numero;//Generer numero
+     private double montant;//Calculer montant
+     private LocalDate dateCmde;//Date du Jour
+    
+    public LocalDate getDateCmde() {
+        return dateCmde;
+    }
+    public void setDateCmde(LocalDate dateCmde) {
+        this.dateCmde = dateCmde;
+    }
+    public Commande() {
+        //Creer un Objet et Initialiser les Attributs
+        //Generer numero
+          nbreCmde++;
+          id=nbreCmde;
+        //Date du Jour
+          dateCmde=LocalDate.now();
+          //Generer Numero
+          int size= String.valueOf(id).length();
+          numero="COM"+"0".repeat(4-size<0?0:4-size)+id;
+    }
+
+
     //Propriete Association
     //OneToMany
     private ProduitCommande[] tabProduitCommandes=new ProduitCommande[N];
+    private int taille;
     public ProduitCommande[] getTabProduitCommandes() {
         return tabProduitCommandes;
     }
@@ -17,14 +42,15 @@ public class Commande {
       if (taille<N) {
            montant+=produitCommande.getMontant();
            tabProduitCommandes[taille]=produitCommande;
-          taille++;
+            taille++;
       }
     }
-    private int taille;
+
 
     
     //OneToOne
     private Facture facture;
+    
     public Commande(int id, String numero) {
         this.id = id;
         this.numero = numero;
@@ -67,7 +93,11 @@ public class Commande {
     }
     @Override
     public String toString() {
-        return "Commande [id=" + id + ", numero=" + numero + ", montant=" + montant + ", facture=" + facture + "]";
+        return "Commande [id=" + id + ", numero=" + numero 
+               + ", montant=" + montant 
+               + ", dateCmde=" + dateCmde
+              + ", facture=" + facture + "]";
     }
+   
     
 }
