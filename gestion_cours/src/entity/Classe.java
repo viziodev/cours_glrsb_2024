@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import entity.enums.Filiere;
 import entity.enums.Niveau;
 
-public class Classe {
-     private static int nbre;
-     private int id;
+public class Classe extends AbstractEntity {
      private String nomClasse;
      private Niveau niveau;
      private Filiere filiere;
@@ -16,7 +14,6 @@ public class Classe {
      public void  add(Cours cours){
            coursList.add(cours);
      }
-
     public ArrayList<Cours> getCoursList() {
         return coursList;
     }
@@ -31,12 +28,7 @@ public class Classe {
         nbre++;
         this.id = nbre;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+   
     public String getNomClasse() {
         return nomClasse;
     }

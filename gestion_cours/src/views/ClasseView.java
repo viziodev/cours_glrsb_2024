@@ -1,6 +1,6 @@
 package views;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import entity.Classe;
@@ -8,12 +8,12 @@ import entity.enums.Filiere;
 import entity.enums.Niveau;
 
 //CoursView est View
-public class ClasseView extends View {
+public class ClasseView extends View<Classe> {
        //this ==> cet objet ==> objet de ClasseView
        //super 
     
      public ClasseView(Scanner scanner) {
-        super.scanner = scanner;
+          super(scanner);
      }
      
      public  Classe saisie(){
@@ -46,9 +46,7 @@ public class ClasseView extends View {
           return Niveau.values()[niveauInt-1];
     }
 
-    public   void  affiche(ArrayList<Classe> classes){
-          for (Classe classe : classes) {
-              System.out.println(classe);
-          }
-    }
+    
+
+   
 }

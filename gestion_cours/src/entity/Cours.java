@@ -4,19 +4,26 @@ import java.util.ArrayList;
 
 import entity.enums.Statut;
 
-public class Cours {
-      private int id;
-      private  static int nbre;
+
+
+public class Cours extends AbstractEntity {
       private String module;
       private String professeur;
       private  Statut statut;
-      ArrayList<Classe> classes=new ArrayList<>();
+      private  ArrayList<Classe> classes=new ArrayList<>();
+      private  ArrayList<Seance> seances=new ArrayList<>();
        
+    public ArrayList<Seance> getSeances() {
+        return seances;
+    }
     public ArrayList<Classe> getClasses() {
         return classes;
     }
     public void add(Classe classe){
           classes.add(classe);
+    }
+    public void addSeance(Seance seance){
+        seances.add(seance);
     }
     public Cours() {
         nbre++;
@@ -29,18 +36,7 @@ public class Cours {
         nbre++;
         id=nbre;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public static int getNbre() {
-        return nbre;
-    }
-    public static void setNbre(int nbre) {
-        Cours.nbre = nbre;
-    }
+   
     public String getModule() {
         return module;
     }

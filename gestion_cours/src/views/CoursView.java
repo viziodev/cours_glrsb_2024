@@ -9,16 +9,16 @@ import entity.enums.Statut;
 import services.ClasseService;
 
 //CoursView est View
-public class CoursView extends View {
+public class CoursView extends View<Cours> {
      //this ==> cet objet ==> objet de CoursView
      //super ==> un Objet de la classe mere ==>objet de View 
      private ClasseView classeView;
      private ClasseService classeService;
     
     public CoursView(Scanner scanner, ClasseView classeView, ClasseService classeService) {
-        super.scanner=scanner;
-        this.classeView = classeView;
-        this.classeService = classeService;
+         super(scanner);
+         this.classeView = classeView;
+         this.classeService = classeService;
     }
    /**
     *  Genericite ==> 
@@ -53,10 +53,5 @@ public class CoursView extends View {
        return cours;
      }
 
-     public   void  affiche(ArrayList<Cours> coursList){
-        for (Cours cours : coursList) {
-            System.out.println(cours);
-        }
-  }
-
+     
 }
